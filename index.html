@@ -1,0 +1,26 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <script src="https://code.angularjs.org/angular-1.0.0rc3.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+
+<div ng-controller="FeedApp">
+    {{test}}
+
+
+    <ul>
+    <li ng-repeat="photo in photos">
+      {{ photo.title }}
+    </li>
+  </ul>
+
+</div>
+
+<!-- <div ng-app="myApp" ng-controller="FeedApp">
+    test
+</div> -->
+
+</body>
+</html>
