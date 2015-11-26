@@ -1,4 +1,4 @@
-//i love emilie
+
 var Utils = function(){
 
 	function getParams(str){
@@ -166,8 +166,21 @@ var app = angular.module('myApp', [])
     		});
     	};
 
-    $scope.showOverlay = function(){
+    $scope.showOverlay = function(imgsrc){
+
+    	var image = $('#overlay-image')[0];
+
+    	image.width = '32px';
+    	image.src = 'http://loadinggif.com/images/image-selection/32.gif';
+
+
     	console.info('show overlay');
+    	console.info(imgsrc);
+    	openOverlay('#overlay');
+
+    	image.width = '500px';
+    	image.src = imgsrc;
+
     };
 
     $scope.getResults();	

@@ -34,6 +34,116 @@
             display: inline-block;
         }
 
+        .photos h3 {
+            display: inline-block;
+            width: 300px;
+            white-space: nowrap;
+            overflow: hidden !important;
+            text-overflow: ellipsis;
+        }
+        
+
+
+    </style>
+
+    <style>
+    a#overlaylaunch-inAbox {
+    display: block;
+    padding: 40px;
+    margin: 40px;
+    background-color: #efefef;
+    font-size: 1.6em;
+    text-decoration: none;
+    text-align: center;
+}
+
+#overlay-inAbox .wrapper {
+    text-align: center;
+}
+
+
+
+/* More important stuff */
+
+.overlay,
+#overlay-shade {
+    display: none;
+}
+
+
+#overlay-image{
+    width: 500px;
+}
+
+#overlay-shade {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: #000;
+}
+
+.overlay {
+    position: absolute;
+    top: -300px;
+    left: 0;
+    left: calc(50% - 300px);
+    width: 450px;
+    width: 600px;
+    min-height: 200px;
+    z-index: 10000;
+    background-color: #7D7D7D;
+    border: 10px solid #CFCFCF;
+    color: #fff;
+    box-shadow: 0 0 16px #000;
+}
+/* 
+.ie7 .overlay {
+    height: 200px;
+}
+*/ 
+
+.overlay .overlay-wrapper {
+    padding: 15px 30px 30px;
+}
+
+
+.overlay .overlay-toolbar {
+    padding: 8px;
+    line-height: 1;
+    text-align: right;
+    overflow: hidden;
+} 
+
+.overlay .overlay-toolbar a.close {
+    display: inline-block;
+        *display: inline;
+         zoom: 1;
+    padding: 0 8px;
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 18px;
+    border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -o-border-radius: 5px;
+    color: #999999;
+    background-color: #515151;
+}
+.overlay .overlay-toolbar a.close span {
+    color: #818181;
+}
+.overlay .overlay-toolbar a.close:hover,
+.overlay .overlay-toolbar a.close:hover span {
+    background-color: #b90900;
+    color: #fff;
+}
+
+
+
 
     </style>
 
@@ -49,7 +159,9 @@
         <ul class="photos">
             <li ng-repeat="photo in photos">
                 <h3>{{ photo.title }}</h3>
-                <a id="{{photo.id}}" href="#{{photo.id}}" ng-click="showOverlay()"><img ng-src="{{photo.url_n}}" /></a>
+                <a id="{{photo.id}}" href ng-click="showOverlay(photo.url_o)"><img ng-src="{{photo.url_n}}" /></a>
+                <img style="display:none" ng-src="{{photo.url_o}}" />
+
             </li>
         </ul>
     </div>
@@ -73,17 +185,17 @@
 
 <!-- overlay -->
 <div id="overlay" class="overlay">
-    <div class="overlay-toolbar"><a class="close" href="#"><span>x</span></a></div>
+    <div class="overlay-toolbar">
+        <a class="close" href="#"><span>x</span></a>
+    </div>
     <div class="overlay-wrapper">
-        Hello! I'm in a box.
-        <img src=""/>
+        <!-- Hello! I'm in a box. -->
+        <img id="overlay-image" src=""/>
     </div>
 </div>
+<div id="overlay-shade"></div>
 
 
-<!-- <div ng-app="myApp" ng-controller="FeedApp">
-    test
-</div> -->
 
     
 
@@ -94,6 +206,65 @@
     
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+<script>
+
+   function openOverlay(olEl) {
+        $oLay = $(olEl);
+        
+        if ($('#overlay-shade').length == 0)
+            $('body').prepend('<div id="overlay-shade"></div>');
+
+        $('#overlay-shade').fadeTo(300, 0.6, function() {
+            var props = {
+                oLayWidth       : $oLay.width(),
+                scrTop          : $(window).scrollTop(),
+                viewPortWidth   : $(window).width()
+            };
+
+            var leftPos = (props.viewPortWidth - props.oLayWidth) / 2;
+
+            $oLay
+                .css({
+                    display : 'block',
+                    opacity : 0,
+                    top : '-=300',
+                    // left : leftPos+'px'
+                })
+                .animate({
+                    top : props.scrTop + 40,
+                    opacity : 1
+                }, 600);
+        });
+    }
+
+    function closeOverlay() {
+        $('.overlay').animate({
+            top : '-=300',
+            opacity : 0
+        }, 400, function() {
+            $('#overlay-shade').fadeOut(300);
+            $(this).css('display','none');
+        });
+    }
+    
+    $('#overlay-shade, .overlay a').on('click', function(e) {
+        closeOverlay();
+        if ($(this).attr('href') == '#') e.preventDefault();
+    });
+    
+    
+    // Usage
+    $('#overlaylaunch-inAbox').click(function(e) {
+       openOverlay('#overlay');
+       e.preventDefault();
+    });
+
+
+
+</script>
+
+
 <script src="app.js"></script>
 
 
