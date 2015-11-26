@@ -1,31 +1,4 @@
-// function TodoCtrl($scope) {
-//     $scope.todos = [
-//         {text:'Learn AngularJS', done:false},
-//         {text:'Build an app', done:false}
-//     ];
-
-//     $scope.getTotalTodos = function () {
-//         return $scope.todos.length;
-//     };
-
-//     $scope.clearCompleted = function () {
-//         $scope.todos = _.filter($scope.todos, function(todo){
-//             return !todo.done;
-//         });
-//     };
-
-//     $scope.addTodo = function () {
-//         $scope.todos.push({text:$scope.formTodoText, done:false});
-//         $scope.formTodoText = '';
-//     };
-
-
-
-// }
-
-// angular.callbacks._0(responseData);
-
-
+//i love emilie
 var Utils = function(){
 
 	function getParams(str){
@@ -139,20 +112,20 @@ var app = angular.module('myApp', [])
 
 	// var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&tags=soccer&api_key=e8a09d2557f2dc06df1301a8fa31ca07&format=json&jsoncallback=JSON_CALLBACK';
 
-		$scope.nextPage = function(){
+		// $scope.nextPage = function(){
 
-			$scope.page = $scope.page+1;
-			$scope.getResults();
+		// 	$scope.page = $scope.page+1;
+		// 	$scope.getResults();
 
-		};
+		// };
 
 
-		$scope.prevPage = function(){
+		// $scope.prevPage = function(){
 
-			$scope.page = $scope.page-1;
-			$scope.getResults();
+		// 	$scope.page = $scope.page-1;
+		// 	$scope.getResults();
 
-		};
+		// };
 
 
 
@@ -189,10 +162,13 @@ var app = angular.module('myApp', [])
 
 					$scope.photos = $scope.photos.concat(locPhotos);
 
-					// console.dir($scope.photos);
 
     		});
     	};
+
+    $scope.showOverlay = function(){
+    	console.info('show overlay');
+    };
 
     $scope.getResults();	
 
@@ -205,10 +181,9 @@ var app = angular.module('myApp', [])
 
     	console.info('when scrolled');
 
-        var elem = elm[0];
-
-        var doc = elem.ownerDocument;
-		var win = doc.defaultView || doc.parentWindow;
+        var elem = elm[0],
+        	doc = elem.ownerDocument,
+        	win = doc.defaultView || doc.parentWindow;
         
         // elm.bind('scroll', function() {
 
@@ -223,11 +198,10 @@ var app = angular.module('myApp', [])
 
 		$(window).scroll(function(){
 			if  ($(window).scrollTop() == $(document).height() - $(window).height()){
-			    	// run our call for pagination
+			    // run our call for pagination
 
-			    	console.info('lets make');
-			    	// FeedApp.getResults();
-			    	 scope.$apply(attr.whenScrolled);
+			   	console.info('get more!');
+				scope.$apply(attr.whenScrolled);
 			}
 		}); 
 

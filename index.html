@@ -38,7 +38,7 @@
     </style>
 
 </head>
-<body >
+<body>
 
 
 <div ng-app="myApp" ng-controller="myCtrl" when-scrolled="getResults()">
@@ -49,7 +49,7 @@
         <ul class="photos">
             <li ng-repeat="photo in photos">
                 <h3>{{ photo.title }}</h3>
-                <img ng-src="{{photo.url_n}}"/>
+                <a id="{{photo.id}}" href="#{{photo.id}}" ng-click="showOverlay()"><img ng-src="{{photo.url_n}}" /></a>
             </li>
         </ul>
     </div>
@@ -60,15 +60,26 @@
     {{photo | json}}
   </pre> -->
 
-  <button ng-click="nextPage()">Next Page</button>
+  <!-- <button ng-click="nextPage()">Next Page</button>
 
   <button ng-click="prevPage()">Prev Page</button>
 
   <button ng-click="page = page + 1">Click me!</button>
 
-  <span>page: {{page}} </span>
+  <span>page: {{page}} </span> -->
 
 </div>
+
+
+<!-- overlay -->
+<div id="overlay" class="overlay">
+    <div class="overlay-toolbar"><a class="close" href="#"><span>x</span></a></div>
+    <div class="overlay-wrapper">
+        Hello! I'm in a box.
+        <img src=""/>
+    </div>
+</div>
+
 
 <!-- <div ng-app="myApp" ng-controller="FeedApp">
     test
@@ -83,7 +94,7 @@
     
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <script src="app.js"></script>
+<script src="app.js"></script>
 
 
 </body>
