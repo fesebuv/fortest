@@ -139,7 +139,7 @@ var app = angular.module('myApp', [])
 				// 'tags': 'soccer',
 				'text': 'soccer',
 				'per_page':'10',
-				'extras': 'url_o, url_s, url_n',
+				'extras': 'url_o, url_s, url_n, url_z',
 				'media': 'photos',
 				'api_key': 'e8a09d2557f2dc06df1301a8fa31ca07',
 				'format': 'json',
@@ -170,16 +170,13 @@ var app = angular.module('myApp', [])
 
     	var image = $('#overlay-image')[0];
 
-    	image.width = '32px';
-    	image.src = 'http://loadinggif.com/images/image-selection/32.gif';
-
-
     	console.info('show overlay');
     	console.info(imgsrc);
-    	openOverlay('#overlay');
+    	
 
-    	image.width = '500px';
+    	// image.width = '500px';
     	image.src = imgsrc;
+    	openOverlay('#overlay');
 
     };
 
