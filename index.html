@@ -2,183 +2,26 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
-
-    <style>
-
-        ul, li{
-            padding:0;
-            margin:0;
-        }
-
-        li{
-            list-style: none;
-        }
-
-        .container{
-            background: gray;
-            width:100%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding:0
-            position: fixed;        
-        }
-
-        .photos{
-            margin: 0 auto;
-            width: 320px;
-            text-align: center;
-        }
-
-        .photos li{
-            display: inline-block;
-        }
-
-        .photos h3 {
-            display: inline-block;
-            width: 300px;
-            white-space: nowrap;
-            overflow: hidden !important;
-            text-overflow: ellipsis;
-        }
-        
-
-
-    </style>
-
-    <style>
-    a#overlaylaunch-inAbox {
-    display: block;
-    padding: 40px;
-    margin: 40px;
-    background-color: #efefef;
-    font-size: 1.6em;
-    text-decoration: none;
-    text-align: center;
-}
-
-#overlay-inAbox .wrapper {
-    text-align: center;
-}
-
-
-
-/* More important stuff */
-
-.overlay,
-#overlay-shade {
-    display: none;
-}
-
-
-#overlay-image{
-    width: 500px;
-}
-
-#overlay-shade {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    background-color: #000;
-}
-
-.overlay {
-    position: absolute;
-    top: -300px;
-    left: 0;
-    left: calc(50% - 300px);
-    width: 450px;
-    width: 600px;
-    min-height: 200px;
-    z-index: 10000;
-    background-color: #7D7D7D;
-    border: 10px solid #CFCFCF;
-    color: #fff;
-    box-shadow: 0 0 16px #000;
-}
-/* 
-.ie7 .overlay {
-    height: 200px;
-}
-*/ 
-
-.overlay .overlay-wrapper {
-    padding: 15px 30px 30px;
-}
-
-
-.overlay .overlay-toolbar {
-    padding: 8px;
-    line-height: 1;
-    text-align: right;
-    overflow: hidden;
-} 
-
-.overlay .overlay-toolbar a.close {
-    display: inline-block;
-        *display: inline;
-         zoom: 1;
-    padding: 0 8px;
-    font-size: 12px;
-    text-decoration: none;
-    font-weight: bold;
-    line-height: 18px;
-    border-radius: 5px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        -o-border-radius: 5px;
-    color: #999999;
-    background-color: #515151;
-}
-.overlay .overlay-toolbar a.close span {
-    color: #818181;
-}
-.overlay .overlay-toolbar a.close:hover,
-.overlay .overlay-toolbar a.close:hover span {
-    background-color: #b90900;
-    color: #fff;
-}
-
-
-
-
-    </style>
-
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/overlay.css">
 </head>
 <body>
 
 
 <div ng-app="myApp" ng-controller="myCtrl" when-scrolled="getResults()">
     
-    <span>page: {{page}} </span>
+    <span class="data">page: {{page}} </span>
 
     <div class="container" >
         <ul class="photos">
             <li ng-repeat="photo in photos">
                 <h3>{{ photo.title }}</h3>
-                <a id="{{photo.id}}" href ng-click="showOverlay(photo.url_o)"><img ng-src="{{photo.url_n}}" /></a>
-                <img style="display:none" ng-src="{{photo.url_o}}" />
+                <a id="{{photo.id}}" href ng-click="showOverlay(photo.url_z)"><img ng-src="{{photo.url_n}}" /></a>
+                <img class="data" ng-src="{{photo.url_z}}" />
 
             </li>
         </ul>
     </div>
-
-
-
- <!--  <pre>
-    {{photo | json}}
-  </pre> -->
-
-  <!-- <button ng-click="nextPage()">Next Page</button>
-
-  <button ng-click="prevPage()">Prev Page</button>
-
-  <button ng-click="page = page + 1">Click me!</button>
-
-  <span>page: {{page}} </span> -->
 
 </div>
 
@@ -186,10 +29,9 @@
 <!-- overlay -->
 <div id="overlay" class="overlay">
     <div class="overlay-toolbar">
-        <a class="close" href="#"><span>x</span></a>
+        <a class="close" href="#"><span>X</span></a>
     </div>
     <div class="overlay-wrapper">
-        <!-- Hello! I'm in a box. -->
         <img id="overlay-image" src=""/>
     </div>
 </div>
@@ -228,11 +70,12 @@
                 .css({
                     display : 'block',
                     opacity : 0,
-                    top : '-=300',
+                    // top : '-=300',
                     // left : leftPos+'px'
                 })
                 .animate({
-                    top : props.scrTop + 40,
+                    // top : props.scrTop + 40,
+                    top: 50,
                     opacity : 1
                 }, 600);
         });
