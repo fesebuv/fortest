@@ -43,69 +43,13 @@
 
     <!-- // <script src="https://code.angularjs.org/angular-1.0.0rc3.min.js"></script> -->
     <!-- // <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular.min.js"></script> -->
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
     <!-- // <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
     
-
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 
-<script>
-
-   function openOverlay(olEl) {
-        $oLay = $(olEl);
-        
-        if ($('#overlay-shade').length == 0)
-            $('body').prepend('<div id="overlay-shade"></div>');
-
-        $('#overlay-shade').fadeTo(300, 0.6, function() {
-            var props = {
-                oLayWidth       : $oLay.width(),
-                scrTop          : $(window).scrollTop(),
-                viewPortWidth   : $(window).width()
-            };
-
-            var leftPos = (props.viewPortWidth - props.oLayWidth) / 2;
-
-            $oLay
-                .css({
-                    display : 'block',
-                    opacity : 0,
-                    // top : '-=300',
-                    // left : leftPos+'px'
-                })
-                .animate({
-                    // top : props.scrTop + 40,
-                    top: 50,
-                    opacity : 1
-                }, 600);
-        });
-    }
-
-    function closeOverlay() {
-        $('.overlay').animate({
-            top : '-=300',
-            opacity : 0
-        }, 400, function() {
-            $('#overlay-shade').fadeOut(300);
-            $(this).css('display','none');
-        });
-    }
-    
-    $('#overlay-shade, .overlay a').on('click', function(e) {
-        closeOverlay();
-        if ($(this).attr('href') == '#') e.preventDefault();
-    });
-    
-    
-    // Usage
-    $('#overlaylaunch-inAbox').click(function(e) {
-       openOverlay('#overlay');
-       e.preventDefault();
-    });
-
-
-
-</script>
+<script src="js/overlay.js"></script>
 
 
 <script src="app.js"></script>
