@@ -176,7 +176,7 @@ var app = angular.module('myApp', [])
 
     	// image.width = '500px';
     	image.src = imgsrc;
-    	openOverlay('#overlay');
+    	overlayLib.openOverlay('#overlay');
 
     };
 
