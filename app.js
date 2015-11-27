@@ -18,6 +18,7 @@ var Utils = function(){
 
 
 
+
 var app = angular.module('myApp', [])
 
 .controller('myCtrl', ['$scope', '$http', function ($scope, $http) {
@@ -94,3 +95,8 @@ var app = angular.module('myApp', [])
     };
 });
 
+
+// bc of the infinite scroll, make sure we start from the top
+$(window).unload(function() {
+  this.scroll(0,0);
+});
